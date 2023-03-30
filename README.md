@@ -2,10 +2,26 @@
 Chess Engine in Javascript, using chessboard.js and chess.js
 
 <h2>DONE</h2>
+
+v0.2.0<br>
+- Evaluation Function + PST's and Piece Weights<br>
+- Minimax<br>
+- AB Pruning<br>
+- Strength Select<br>
+- Show values and data<br>
+- UNDO/RESET/MOVE buttons (play as black)<br>
+- Advantage Meter<br>
+
+V0.1.0<br>
 - GUI layout<br>
 - Play Random Bot<br>
 - Flip Button works<br>
 
 <h2>TODO</h2>
-- Everything<br>
--...<br>
+- Fen Input<br>
+- Show PGN<br>
+- Show Status<br>
+- Move Ordering<br>
+- Iterative Deepening<br>
+- TT ?<br>
+- ....<br>
