@@ -23,5 +23,6 @@ V0.1.0<br>
 - Show Status<br>
 - Move Ordering<br>
 - Iterative Deepening<br>
+- Better King Endgame<br>
 - TT ?<br>
 - ....<br>
