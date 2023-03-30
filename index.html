@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GiChess</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/chessboard-1.0.0.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- JS -->
+  <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="js/chess.js"></script>
+  <script type="text/javascript" src="js/chessboard-1.0.0.js"></script>
+  <script defer type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+
+  <h1 class="textcenter">GiChess</h1>
+
+  <table class="center">
+    <tr>
+      <td class="textcenter" width="350px"><br><br><br><br><br>
+        <h2>STATUS:</h2>
+        <p>white to move</p>
+        <h2>PGN:</h2>
+        <textarea readonly></textarea>
+      </td>
+      <td class="textcenter center">
+        <button>USE FEN</button><br><br>
+        <input value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
+        <div id="myBoard" style="width: 500px"></div>
+        <meter min="-10" max="10"></meter>
+
+        <table width="500px">
+          <tr>
+            <td>
+              <button>UNDO</button><br>&nbsp;
+            </td>
+            <td>
+              <button id="flipOrientationBtn">FLIP</button><br>&nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button>RESET</button>
+            </td>
+            <td>
+              <button>MOVE</button>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+      <td style="padding-left: 2%;" width="350px"><br><br><br><br><br>
+        <h2>STRENGTH:</h2>
+        <select style="width: 50%; height: 50px; font-size: large; text-align: center;">
+          <option>Level 1</option>
+          <option>Level 2</option>
+          <option>Level 3</option>
+        </select>
+        <p style="font-size: large; font-weight: bolder;">DEPTH: 3</p>
+        <p>30000 positions in 3 seconds</p>
+        <p>10000 pos/s</p>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
