@@ -15,7 +15,7 @@ v0.2.0<br>
 V0.1.0<br>
 - GUI layout<br>
 - Play Random Bot<br>
-- Flip Button works<br>
+- FLIP Button<br>
 
 <h2>TODO</h2>
 - Fen Input<br>
