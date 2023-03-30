@@ -34,12 +34,12 @@
         <button>USE FEN</button><br><br>
         <input value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
         <div id="myBoard" style="width: 500px"></div>
-        <meter min="-10" max="10"></meter>
+        <meter id="myMeter" min="-10" max="10"></meter>
 
         <table width="500px">
           <tr>
             <td>
-              <button>UNDO</button><br>&nbsp;
+              <button id="undoBtn">UNDO</button><br>&nbsp;
             </td>
             <td>
               <button id="flipOrientationBtn">FLIP</button><br>&nbsp;
@@ -47,10 +47,10 @@
           </tr>
           <tr>
             <td>
-              <button>RESET</button>
+              <button id="resetBtn">RESET</button>
             </td>
             <td>
-              <button>MOVE</button>
+              <button id="moveBtn">MOVE</button>
             </td>
           </tr>
         </table>
@@ -58,14 +58,14 @@
       </td>
       <td style="padding-left: 2%;" width="350px"><br><br><br><br><br>
         <h2>STRENGTH:</h2>
-        <select style="width: 50%; height: 50px; font-size: large; text-align: center;">
-          <option>Level 1</option>
-          <option>Level 2</option>
-          <option>Level 3</option>
+        <select id="search-depth" style="width: 50%; height: 50px; font-size: large; text-align: center;">
+          <option value="1">Level 1</option>
+          <option value="2">Level 2</option>
+          <option value="3">Level 3</option>
         </select>
-        <p style="font-size: large; font-weight: bolder;">DEPTH: 3</p>
-        <p>30000 positions in 3 seconds</p>
-        <p>10000 pos/s</p>
+        <p style="font-size: large; font-weight: bolder;">DEPTH: <label id="depth"></label></p>
+        <p><label id="position-count"></label> positions in <label id="time"></label> seconds</p>
+        <p><label id="positions-per-s"></label> pos/s</p>
       </td>
     </tr>
   </table>
