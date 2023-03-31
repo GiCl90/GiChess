@@ -24,7 +24,7 @@ V0.1.0<br>
 - FLIP Button<br>
 
 <h2>TODO</h2>
-- Make chess.js faster
+- Make chess.js faster<br>
 - Move Ordering<br>
 - Better King Endgame<br>
 - Iterative Deepening<br>
