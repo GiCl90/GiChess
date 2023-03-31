@@ -6,6 +6,9 @@ var STACK_SIZE = 100; // maximum size of undo stack
 
 var board = null;
 var $board = $('#myBoard');
+var $status = $('#status')
+var $fen = $('#fen');
+var $pgn = $('#pgn');
 var game = new Chess();
 var globalSum = 0;
 
@@ -95,12 +98,12 @@ var pst_w = {
   // Endgame King Table
   'k_e': [
     [0,  0,  0,  0,  0,  0,  0, 0],
-    [0, 30, 20, 10, 10, 20, 30, 0],
-    [0, 20, 30, 20, 20, 30, 20, 0],
+    [0, 10, 10, 10, 10, 10, 10, 0],
+    [0, 10, 20, 20, 20, 20, 10, 0],
     [0, 10, 20, 30, 30, 20, 10, 0],
     [0, 10, 20, 30, 30, 20, 10, 0],
-    [0, 20, 30, 20, 20, 30, 20, 0],
-    [0, 30, 20, 10, 10, 20, 30, 0],
+    [0, 10, 20, 20, 20, 20, 10, 0],
+    [0, 10, 10, 10, 10, 10, 10, 0],
     [0,  0,  0,  0,  0,  0,  0, 0]
   ]
 };
@@ -249,7 +252,37 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
   }
 }
 
-function checkStatus(color) {
+function updateStatus () {
+  var status = ''
+
+  var moveColor = 'White'
+  if (game.turn() === 'b') {
+    moveColor = 'Black'
+  }
+
+  // checkmate?
+  if (game.in_checkmate()) {
+    status = 'Game over, ' + moveColor + ' is in checkmate.'
+  }
+
+  // draw?
+  else if (game.in_draw()) {
+    status = 'Game over, drawn position'
+  }
+
+  // game still on
+  else {
+    status = moveColor + ' to move'
+
+    // check?
+    if (game.in_check()) {
+      status += ', ' + moveColor + ' is in check'
+    }
+  }
+
+  $status.html(status);
+  $fen.html(game.fen());
+  $pgn.html(game.pgn());
 }
 
 function updateAdvantage() {
@@ -302,12 +335,12 @@ function makeBestMove(color) {
 
   globalSum = evaluateBoard(move, globalSum, 'w');
   updateAdvantage();
+  updateStatus();
 
   game.move(move);
   board.position(game.fen());
 
   if (color === 'b') {
-    checkStatus('black');
 
     // Highlight black move
     $board.find('.' + squareClass).removeClass('highlight-black');
@@ -320,7 +353,6 @@ function makeBestMove(color) {
       .find('.square-' + squareToHighlight)
       .addClass('highlight-' + colorToHighlight);
   } else {
-    checkStatus('white');
 
     // Highlight white move
     $board.find('.' + squareClass).removeClass('highlight-white');
@@ -345,6 +377,13 @@ function reset() {
   $board.find('.' + squareClass).removeClass('highlight-white');
   $board.find('.' + squareClass).removeClass('highlight-black');
   board.position(game.fen());
+  updateAdvantage();
+  updateStatus();
+
+  if (timer) {
+    clearTimeout(timer);
+    timer = null;
+  }
 }
 
 //
@@ -375,8 +414,12 @@ $('#undoBtn').on('click', function () {
 
     // Undo twice: Opponent's latest move, followed by player's latest move
     undo();
+    updateAdvantage();
+    updateStatus();
     window.setTimeout(function () {
       undo();
+      updateAdvantage();
+      updateStatus();
       window.setTimeout(function () {
       }, 250);
     }, 250);
@@ -385,16 +428,75 @@ $('#undoBtn').on('click', function () {
   }
 });
 
+function redo() {
+  game.move(undo_stack.pop());
+  board.position(game.fen());
+}
+
+$('#redoBtn').on('click', function () {
+  if (undo_stack.length >= 2) {
+    // Redo twice: Player's last move, followed by opponent's last move
+    redo();
+    updateAdvantage();
+    updateStatus();
+    window.setTimeout(function () {
+      redo();
+      updateAdvantage();
+      updateStatus();
+      window.setTimeout(function () {
+        showHint();
+      }, 250);
+    }, 250);
+  } else {
+    alert('Nothing to redo.');
+  }
+});
+
 $('#flipOrientationBtn').on('click', board.flip);
 
 $('#moveBtn').on('click', function () {
   window.setTimeout(function () {
     makeBestMove(game.turn());
+    updateAdvantage();
     updateStatus();
     $board.find('.' + squareClass).removeClass('highlight-white');
     $board.find('.' + squareClass).removeClass('highlight-black');
   }, 250)
 });
+
+function returnText() {
+  input = document.getElementById("fen").value
+  localStorage.setItem('input', input);
+  board.position(input);
+  game.load(input);
+  $pgn.html(game.pgn());
+  $fen.html(game.fen());
+  globalSum = 0;
+  $board.find('.' + squareClass).removeClass('highlight-white')
+  $board.find('.' + squareClass).removeClass('highlight-black')
+  updateAdvantage();
+  updateStatus();
+}
+
+$('#compVsCompBtn').on('click', function () {
+  reset();
+  compVsComp('w');
+});
+
+function compVsComp(color) {
+  updateAdvantage();
+  updateStatus();
+  if (game.game_over()) return false;
+    timer = window.setTimeout(function () {
+      makeBestMove(color);
+      if (color === 'w') {
+        color = 'b';
+      } else {
+        color = 'w';
+      }
+      compVsComp(color);
+    }, 250);
+}
 
 //
 // The remaining code is adapted from chessboard.js examples #5000 through #5005:
@@ -429,6 +531,7 @@ function onDrop(source, target) {
 
   globalSum = evaluateBoard(move, globalSum, 'w');
   updateAdvantage();
+  updateStatus();
 
   // Highlight latest move
   $board.find('.' + squareClass).removeClass('highlight-white');
@@ -442,15 +545,14 @@ function onDrop(source, target) {
     .find('.square-' + squareToHighlight)
     .addClass('highlight-' + colorToHighlight);
 
-  if (!checkStatus('black'));
-  {
     // Make the best move
     window.setTimeout(function () {
       makeBestMove(game.turn());
+      updateStatus();
+      updateAdvantage();
       window.setTimeout(function () {
       }, 250);
     }, 250);
-  }
 }
 
 function onSnapEnd() {

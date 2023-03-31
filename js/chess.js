@@ -287,19 +287,19 @@ var Chess = function(fen) {
 
     /* 1st criterion: 6 space-seperated fields? */
     var tokens = fen.split(/\s+/)
-    if (tokens.length !== 6) {
+    /*if (tokens.length !== 6) {
       return { valid: false, error_number: 1, error: errors[1] }
     }
 
-    /* 2nd criterion: move number field is a integer value > 0? */
+    /* 2nd criterion: move number field is a integer value > 0? 
     if (isNaN(tokens[5]) || parseInt(tokens[5], 10) <= 0) {
       return { valid: false, error_number: 2, error: errors[2] }
     }
 
-    /* 3rd criterion: half move counter is an integer >= 0? */
+    /* 3rd criterion: half move counter is an integer >= 0? 
     if (isNaN(tokens[4]) || parseInt(tokens[4], 10) < 0) {
       return { valid: false, error_number: 3, error: errors[3] }
-    }
+    }*/
 
     /* 4th criterion: 4th field is a valid e.p.-string? */
     if (!/^(-|[abcdefgh][36])$/.test(tokens[3])) {

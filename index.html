@@ -26,13 +26,13 @@
     <tr>
       <td class="textcenter" width="350px"><br><br><br><br><br>
         <h2>STATUS:</h2>
-        <p>white to move</p>
+        <label style="font-weight: bolder; color: red; font-size: large;" id="status">&nbsp;</label>
         <h2>PGN:</h2>
-        <textarea readonly></textarea>
+        <textarea readonly id="pgn"></textarea>
       </td>
       <td class="textcenter center">
-        <button>USE FEN</button><br><br>
-        <input value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
+        <button onclick="returnText()">USE FEN</button><br><br>
+        <input id="fen" value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
         <div id="myBoard" style="width: 500px"></div>
         <meter id="myMeter" min="-10" max="10"></meter>
 
@@ -42,12 +42,18 @@
               <button id="undoBtn">UNDO</button><br>&nbsp;
             </td>
             <td>
+              <button id="resetBtn">RESET</button><br>&nbsp;
+            </td>
+            <td>
               <button id="flipOrientationBtn">FLIP</button><br>&nbsp;
             </td>
           </tr>
           <tr>
             <td>
-              <button id="resetBtn">RESET</button>
+              <button id="redoBtn">REDO</button>
+            </td>
+            <td>
+              <button id="compVsCompBtn">AI VS AI</button>
             </td>
             <td>
               <button id="moveBtn">MOVE</button>
