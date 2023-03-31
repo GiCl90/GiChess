@@ -1,68 +1,101 @@
 body {
-    background-color: lightgray;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: lightgray;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
 
 .center {
-    margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .textcenter {
-    text-align: center;
+  text-align: center;
 }
 
 button {
-    background-color: lightblue;
-    color: black;
-    border: 0px;
-    width: 50%;
-    height: 50px;
+  background-color: lightblue;
+  color: black;
+  border: 0px;
+  width: 100%;
+  height: 50px;
 }
 
 button:hover {
-    background-color: white;
+  background-color: white;
 }
 
 td {
-    vertical-align: top;
+  vertical-align: top;
 }
 
 textarea {
-    width: 90%;
-    height: 350px;
-    background-color: lightgray;
-    resize: none;
+  width: 100%;
+  height: 375px;
+  background-color: lightgray;
+  resize: none;
 }
 
 input {
-    width: 450px;
-    height: 30px;
-    background-color: lightgray;
+  max-width: 500px;
+  width: 100%;
+  height: 30px;
+  background-color: lightgray;
 }
 
 meter {
-    width: 100%;
-    height: 30px;
+  max-width: 500px;
+  width: 100%;
+  height: 30px;
+}
+
+meter::-webkit-meter-bar {
+  background: none;
+  background-color: black;
+}
+
+meter::-webkit-meter-optimum-value {
+  -webkit-transition: width .5s;
+  box-shadow: 0 5px 5px -5px #999 inset;
+  background-image: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 100%);
+  background-size: 100% 100%;
+}
+
+.mobileHide {
+  display: inline;
+}
+
+/* Smartphone Portrait and Landscape */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .mobileHide {
+    display: none;
   }
-  meter::-webkit-meter-bar {
-    background: none;
-    background-color: black;
+}
+
+.mobileShow {
+  display: none;
+}
+
+/* Smartphone Portrait and Landscape */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .mobileShow {
+    display: inline;
   }
-  meter::-webkit-meter-optimum-value {
-    -webkit-transition: width .5s;
-    box-shadow: 0 5px 5px -5px #999 inset;
-    background-image: linear-gradient( 90deg, #FFFFFF 0%, #FFFFFF 100%);
-    background-size: 100% 100%;
-  }
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
 
 /*
  *  Chessboard Related
  */
 
- .highlight-white {
-    box-shadow: inset 0 0 0px 2000px rgba(195,216,135,0.7);
-  }
-  .highlight-black {
-    box-shadow: inset 0 0 0px 2000px rgba(195,216,135,0.7);
-  }
+.highlight-white {
+  box-shadow: inset 0 0 0px 2000px rgba(195, 216, 135, 0.7);
+}
+
+.highlight-black {
+  box-shadow: inset 0 0 0px 2000px rgba(195, 216, 135, 0.7);
+}

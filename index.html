@@ -8,10 +8,13 @@
   <title>GiChess</title>
 
   <!-- CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/chessboard-1.0.0.css">
   <link rel="stylesheet" href="css/main.css">
 
   <!-- JS -->
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
   <script type="text/javascript" src="js/chess.js"></script>
   <script type="text/javascript" src="js/chessboard-1.0.0.js"></script>
@@ -20,61 +23,71 @@
 
 <body>
 
-  <h1 class="textcenter">GiChess</h1>
+  <div class="mobileHide"><h1 class="textcenter">GiChess</h1></div>
 
-  <table class="center">
-    <tr>
-      <td class="textcenter" width="350px"><br><br><br><br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col textcenter center" ontouchstart="enableScroll()">
+        <div class="mobileHide">
+        <p style="margin-top: 25%;">&nbsp;</p>
+        </div>
         <h2>STATUS:</h2>
         <label style="font-weight: bolder; color: red; font-size: large;" id="status">&nbsp;</label>
-        <h2>PGN:</h2>
-        <textarea readonly id="pgn"></textarea>
-      </td>
-      <td class="textcenter center">
-        <button onclick="returnText()">USE FEN</button><br><br>
-        <input id="fen" value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
-        <div id="myBoard" style="width: 500px"></div>
+        <div class="mobileHide">
+          <h2>PGN:</h2>
+          <textarea readonly id="pgn"></textarea>
+        </div>
+      </div>
+      <div class="col textcenter">
+        <div class="mobileHide">
+          <button onclick="returnText()">USE FEN</button><br><br>
+          <input id="fen" value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
+        </div>
+        <div id="myBoard" style="width: 500px; max-width: 100%;" ontouchstart="disableScroll()"></div>
         <meter id="myMeter" min="-10" max="10"></meter>
 
-        <table width="500px">
-          <tr>
-            <td>
+        <div class="container" ontouchstart="enableScroll()">
+          <div class="row">
+            <div class="col">
               <button id="undoBtn">UNDO</button><br>&nbsp;
-            </td>
-            <td>
+            </div>
+            <div class="col">
               <button id="resetBtn">RESET</button><br>&nbsp;
-            </td>
-            <td>
+            </div>
+            <div class="col">
               <button id="flipOrientationBtn">FLIP</button><br>&nbsp;
-            </td>
-          </tr>
-          <tr>
-            <td>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
               <button id="redoBtn">REDO</button>
-            </td>
-            <td>
+            </div>
+            <div class="col">
               <button id="compVsCompBtn">AI VS AI</button>
-            </td>
-            <td>
+            </div>
+            <div class="col">
               <button id="moveBtn">MOVE</button>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
 
-      </td>
-      <td style="padding-left: 2%;" width="350px"><br><br><br><br><br>
+      </div>
+      <div class="col center textcenter" ontouchstart="enableScroll()">
+        <div class="mobileHide">
+        <p style="margin-top: 25%;">&nbsp;</p>
+        </div>
         <h2>STRENGTH:</h2>
         <select id="search-depth" style="width: 50%; height: 50px; font-size: large; text-align: center;">
           <option value="1">Level 1</option>
           <option value="2">Level 2</option>
           <option value="3">Level 3</option>
-        </select>
-        <p style="font-size: large; font-weight: bolder;">DEPTH: <label id="depth"></label></p>
-        <p><label id="position-count"></label> positions in <label id="time"></label> seconds</p>
-        <p><label id="positions-per-s"></label> pos/s</p>
-      </td>
-    </tr>
-  </table>
+        </select><br><br>
+        <p class="mobileHide" style="font-size: large; font-weight: bolder;">DEPTH: <label id="depth"></label></p>
+        <p class="mobileHide"><label id="position-count"></label> positions in <label id="time"></label> seconds</p>
+        <p class="mobileHide"><label id="positions-per-s"></label> pos/s</p>
+      </div>
+    </div>
+  </div>
 
 </body>
 
