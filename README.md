@@ -3,6 +3,12 @@ Chess Engine in Javascript, using chessboard.js and chess.js
 
 <h2>DONE</h2>
 
+v0.3.0<br>
+- FEN input (edited chess.js)<br>
+- Show PGN<br>
+- Show Status<br>
+- Added REDO and AI vs AI buttons<br>
+
 v0.2.0<br>
 - Evaluation Function + PST's and Piece Weights<br>
 - Minimax<br>
@@ -18,11 +24,9 @@ V0.1.0<br>
 - FLIP Button<br>
 
 <h2>TODO</h2>
-- Fen Input<br>
-- Show PGN<br>
-- Show Status<br>
+- Make chess.js faster
 - Move Ordering<br>
-- Iterative Deepening<br>
 - Better King Endgame<br>
+- Iterative Deepening<br>
 - TT ?<br>
 - ....<br>
