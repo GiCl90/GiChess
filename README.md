@@ -3,6 +3,9 @@ Chess Engine in Javascript, using chessboard.js and chess.js
 
 <h2>DONE</h2>
 
+v1.0.0<br>
+- Chess.js faster (use ugly_moves)<br>
+
 v0.3.0<br>
 - FEN input (edited chess.js)<br>
 - Show PGN<br>
@@ -24,7 +27,6 @@ V0.1.0<br>
 - FLIP Button<br>
 
 <h2>TODO</h2>
-- Make chess.js faster<br>
 - Move Ordering<br>
 - Better King Endgame<br>
 - Iterative Deepening<br>
