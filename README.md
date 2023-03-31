@@ -3,6 +3,10 @@ Chess Engine in Javascript, using chessboard.js and chess.js
 
 <h2>DONE</h2>
 
+v1.1.0<br>
+- Added Bootstrap
+- Made mobile-friendly
+
 v1.0.0<br>
 - Chess.js faster (use ugly_moves)<br>
 
