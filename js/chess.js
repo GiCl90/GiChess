@@ -983,6 +983,7 @@ var Chess = function(fen) {
     if (turn === BLACK) {
       move_number++
     }
+
     turn = swap_color(turn)
   }
 
@@ -1369,6 +1370,11 @@ var Chess = function(fen) {
     fen: function() {
       return generate_fen()
     },
+
+    moveNumber: function(){
+        generate_fen()
+        return move_number;
+      },
 
     board: function() {
       var output = [],

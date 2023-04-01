@@ -131,9 +131,9 @@ function evaluateBoard(move, prevSum, color) {
   var to = [8 - parseInt(move.to[1]), move.to.charCodeAt(0) - 'a'.charCodeAt(0)];
 
   // Change endgame behavior for kings
-  if (prevSum < -1500) {
+  var nmoves = game.moveNumber();
+  if (prevSum < -1000 || nmoves >= 30) {
     if (move.piece === 'k') { move.piece = 'k_e' }
-    else if (move.captured === 'k') { move.captured = 'k_e' }
   }
 
   if ('captured' in move) {
@@ -238,6 +238,9 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
       if (childValue > alpha) {
         alpha = childValue;
       }
+      if (childValue >= beta) { // cutoff
+        break;
+      }
     }
 
     else {
@@ -248,11 +251,9 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
       if (childValue < beta) {
         beta = childValue;
       }
-    }
-
-    // Alpha-beta pruning
-    if (alpha >= beta) {
-      break;
+      if (childValue <= alpha) { // cutoff
+        break;
+      }
     }
   }
 
