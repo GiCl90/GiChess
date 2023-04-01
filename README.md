@@ -36,7 +36,6 @@ V0.1.0<br>
 - FLIP Button<br>
 
 <h2>TODO</h2>
-- Move Ordering<br>
 - Better King Endgame<br>
 - Iterative Deepening<br>
 - TT ?<br>
