@@ -40,3 +40,6 @@ V0.1.0<br>
 - Iterative Deepening<br>
 - TT ?<br>
 - ....<br>
+
+<h2>CREDITS</h2>
+Zhang Zeyu - For <a href="https://dev.to/zeyu2001/build-a-simple-chess-ai-in-javascript-18eg">this tutorial</a>
