@@ -4,6 +4,9 @@ Chess Engine in Javascript, using chessboard.js and chess.js
 Play at <a href="https://gicl90.github.io/GiChess/">https://gicl90.github.io/GiChess</a>
 <h2>DONE</h2>
 
+v1.2.0<br>
+- Move Ordering (captures first)<br>
+
 v1.1.0<br>
 - Added Bootstrap
 - Made mobile-friendly
