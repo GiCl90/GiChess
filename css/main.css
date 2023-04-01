@@ -29,9 +29,16 @@ td {
   vertical-align: top;
 }
 
-textarea {
+.pgn {
   width: 100%;
-  height: 375px;
+  height: 300px;
+  background-color: lightgray;
+  resize: none;
+}
+
+.fen {
+  width: 100%;
+  height: 30px;
   background-color: lightgray;
   resize: none;
 }
