@@ -478,7 +478,7 @@ $('#moveBtn').on('click', function () {
 });
 
 function returnText() {
-  input = document.getElementById("fen").value
+  input = document.getElementById("input").value
   localStorage.setItem('input', input);
   board.position(input);
   game.load(input);
