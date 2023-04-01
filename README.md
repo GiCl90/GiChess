@@ -4,9 +4,13 @@ Chess Engine in Javascript, using chessboard.js and chess.js
 Play at <a href="https://gicl90.github.io/GiChess/">https://gicl90.github.io/GiChess</a>
 <h2>DONE</h2>
 
+v1.3.0<br>
+- Better King Endgame<br>
+- Added cutoff-nodes<br>
+
 v1.2.0<br>
 - Move Ordering (captures first)<br>
-- Changed PST's
+- Changed PST's<br>
 
 v1.1.0<br>
 - Added Bootstrap
@@ -36,7 +40,6 @@ V0.1.0<br>
 - FLIP Button<br>
 
 <h2>TODO</h2>
-- Better King Endgame<br>
 - Iterative Deepening<br>
 - TT ?<br>
 - ....<br>
