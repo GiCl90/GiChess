@@ -6,6 +6,7 @@ Play at <a href="https://gicl90.github.io/GiChess/">https://gicl90.github.io/GiC
 
 v1.2.0<br>
 - Move Ordering (captures first)<br>
+- Changed PST's
 
 v1.1.0<br>
 - Added Bootstrap
