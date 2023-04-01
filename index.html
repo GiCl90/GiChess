@@ -36,14 +36,16 @@
         <h2>STATUS:</h2>
         <label style="font-weight: bolder; color: red; font-size: large;" id="status">&nbsp;</label>
         <div class="mobileHide">
+          <h2>FEN:</h2>
+          <textarea class="fen" readonly id="fen"></textarea>
           <h2>PGN:</h2>
-          <textarea readonly id="pgn"></textarea>
+          <textarea class="pgn" readonly id="pgn"></textarea>
         </div>
       </div>
       <div class="col textcenter">
         <div class="mobileHide">
           <button onclick="returnText()">USE FEN</button><br><br>
-          <input id="fen" value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
+          <input id="input" value="r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - "><br><br>
         </div>
         <div id="myBoard" style="width: 500px; max-width: 100%;" ontouchstart="disableScroll()"></div>
         <meter id="myMeter" min="-10" max="10"></meter>
