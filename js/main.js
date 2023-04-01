@@ -30,6 +30,7 @@ timer = null;
 
 //
 // Piece Square Tables
+// https://www.chessprogramming.org/Simplified_Evaluation_Function
 //
 
 var weights = { 'p': 100, 'n': 320, 'b': 330, 'r': 500, 'q': 900, 'k': 20000, 'k_e': 20000 };
