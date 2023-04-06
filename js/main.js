@@ -451,9 +451,6 @@ $('#redoBtn').on('click', function () {
       redo();
       updateAdvantage();
       updateStatus();
-      window.setTimeout(function () {
-        showHint();
-      }, 250);
     }, 250);
   } else {
     alert('Nothing to redo.');
