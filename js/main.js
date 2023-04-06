@@ -425,16 +425,11 @@ $('#undoBtn').on('click', function () {
     $board.find('.' + squareClass).removeClass('highlight-white');
     $board.find('.' + squareClass).removeClass('highlight-black');
 
-    // Undo twice: Opponent's latest move, followed by player's latest move
+    // Undo 
     undo();
     updateAdvantage();
     updateStatus();
     window.setTimeout(function () {
-      undo();
-      updateAdvantage();
-      updateStatus();
-      window.setTimeout(function () {
-      }, 250);
     }, 250);
   } else {
     alert('Nothing to undo.');
