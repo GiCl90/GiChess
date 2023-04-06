@@ -421,7 +421,7 @@ function undo() {
 }
 
 $('#undoBtn').on('click', function () {
-  if (game.history().length >= 2) {
+  if (game.history().length >= 1) {
     $board.find('.' + squareClass).removeClass('highlight-white');
     $board.find('.' + squareClass).removeClass('highlight-black');
 
@@ -442,15 +442,12 @@ function redo() {
 }
 
 $('#redoBtn').on('click', function () {
-  if (undo_stack.length >= 2) {
+  if (undo_stack.length >= 1) {
     // Redo twice: Player's last move, followed by opponent's last move
     redo();
     updateAdvantage();
     updateStatus();
     window.setTimeout(function () {
-      redo();
-      updateAdvantage();
-      updateStatus();
     }, 250);
   } else {
     alert('Nothing to redo.');
