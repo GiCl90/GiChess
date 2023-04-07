@@ -425,7 +425,7 @@ $('#undoBtn').on('click', function () {
     $board.find('.' + squareClass).removeClass('highlight-white');
     $board.find('.' + squareClass).removeClass('highlight-black');
 
-    // Undo 
+    // Undo twice: Opponent's latest move, followed by player's latest move
     undo();
     updateAdvantage();
     updateStatus();
@@ -466,19 +466,22 @@ $('#moveBtn').on('click', function () {
   }, 250)
 });
 
-function returnText() {
-  input = document.getElementById("input").value
-  localStorage.setItem('input', input);
-  board.position(input);
-  game.load(input);
-  $pgn.html(game.pgn());
-  $fen.html(game.fen());
-  globalSum = 0;
-  $board.find('.' + squareClass).removeClass('highlight-white')
-  $board.find('.' + squareClass).removeClass('highlight-black')
-  updateAdvantage();
-  updateStatus();
-}
+$(document).ready(function () {
+
+  $("#fenbtn").click(function () {
+      var input = $("#fen").val();
+      board.position(input);
+      game.load(input);
+      $pgn.html(game.pgn());
+      $fen.html(game.fen());
+      globalSum = 0;
+      $board.find('.' + squareClass).removeClass('highlight-white')
+      $board.find('.' + squareClass).removeClass('highlight-black')
+      updateAdvantage();
+      updateStatus();
+  });
+
+});
 
 $('#compVsCompBtn').on('click', function () {
   reset();
