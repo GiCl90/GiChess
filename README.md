@@ -7,6 +7,7 @@ Play at <a href="https://gicl90.github.io/GiChess/">https://gicl90.github.io/GiC
 v1.3.0<br>
 - Better King Endgame<br>
 - Added cutoff-nodes<br>
+- Minor stuff<br>
 
 v1.2.0<br>
 - Move Ordering (captures first)<br>
