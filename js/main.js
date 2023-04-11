@@ -11,11 +11,18 @@ var $fen = $('#fen');
 var $pgn = $('#pgn');
 var game = new Chess();
 var globalSum = 0;
+var r = document.querySelector(':root');
+var moveSound = new Audio('sounds/move-self.mp3');
+var captureSound = new Audio('sounds/capture.mp3');
+
 
 var squareClass = 'square-55d63';
 var squareToHighlight = null;
 var colorToHighlight = null;
 var positionCount;
+var theme;
+
+timer = null;
 
 var config = {
   draggable: true,
@@ -23,10 +30,9 @@ var config = {
   onDragStart: onDragStart,
   onDrop: onDrop,
   onSnapEnd: onSnapEnd,
+  pieceTheme: ('img/chesspieces/chesscom/{piece}.png'),
 };
 board = Chessboard('myBoard', config);
-
-timer = null;
 
 //
 // Piece Square Tables
@@ -36,53 +42,53 @@ timer = null;
 var weights = { 'p': 100, 'n': 320, 'b': 330, 'r': 500, 'q': 900, 'k': 20000, 'k_e': 20000 };
 var pst_w = {
   'p': [
-    [ 0,  0,   0,   0,   0,   0,  0,  0],
-    [50, 50,  50,  50,  50,  50, 50, 50],
-    [10, 10,  20,  30,  30,  20, 10, 10],
-    [ 5,  5,  10,  25,  25,  10,  5,  5],
-    [ 0,  0,   0,  20,  20,   0,  0,  0],
-    [ 5, -5, -10,   0,   0, -10, -5,  5],
-    [ 5, 10,  10, -20, -20,  10, 10,  5],
-    [ 0,  0,   0,   0,   0,   0,  0,  0]
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [50, 50, 50, 50, 50, 50, 50, 50],
+    [10, 10, 20, 30, 30, 20, 10, 10],
+    [5, 5, 10, 25, 25, 10, 5, 5],
+    [0, 0, 0, 20, 20, 0, 0, 0],
+    [5, -5, -10, 0, 0, -10, -5, 5],
+    [5, 10, 10, -20, -20, 10, 10, 5],
+    [0, 0, 0, 0, 0, 0, 0, 0]
   ],
   'n': [
     [-50, -40, -30, -30, -30, -30, -40, -50],
-    [-40, -20,   0,   0,   0,   0, -20, -40],
-    [-30,   0,  10,  15,  15,  10,   0, -30],
-    [-30,   5,  15,  20,  20,  15,   5, -30],
-    [-30,   0,  15,  20,  20,  15,   0, -30],
-    [-30,   5,  10,  15,  15,  10,   5, -30],
-    [-40, -20,   0,   5,   5,   0, -20, -40],
+    [-40, -20, 0, 0, 0, 0, -20, -40],
+    [-30, 0, 10, 15, 15, 10, 0, -30],
+    [-30, 5, 15, 20, 20, 15, 5, -30],
+    [-30, 0, 15, 20, 20, 15, 0, -30],
+    [-30, 5, 10, 15, 15, 10, 5, -30],
+    [-40, -20, 0, 5, 5, 0, -20, -40],
     [-50, -40, -30, -30, -30, -30, -40, -50]
   ],
   'b': [
     [-20, -10, -10, -10, -10, -10, -10, -20],
-    [-10,   0,   0,   0,   0,   0,   0, -10],
-    [-10,   0,   5,  10,  10,   5,   0, -10],
-    [-10,   5,   5,  10,  10,   5,   5, -10],
-    [-10,   0,  10,  10,  10,  10,   0, -10],
-    [-10,  10,  10,  10,  10,  10,  10, -10],
-    [-10,   5,   0,   0,   0,   0,   5, -10],
+    [-10, 0, 0, 0, 0, 0, 0, -10],
+    [-10, 0, 5, 10, 10, 5, 0, -10],
+    [-10, 5, 5, 10, 10, 5, 5, -10],
+    [-10, 0, 10, 10, 10, 10, 0, -10],
+    [-10, 10, 10, 10, 10, 10, 10, -10],
+    [-10, 5, 0, 0, 0, 0, 5, -10],
     [-20, -10, -10, -10, -10, -10, -10, -20]
   ],
   'r': [
-    [ 0,  0,  0,  0,  0,  0,  0,  0],
-    [ 5, 10, 10, 10, 10, 10, 10,  5],
-    [-5,  0,  0,  0,  0,  0,  0, -5],
-    [-5,  0,  0,  0,  0,  0,  0, -5],
-    [-5,  0,  0,  0,  0,  0,  0, -5],
-    [-5,  0,  0,  0,  0,  0,  0, -5],
-    [-5,  0,  0,  0,  0,  0,  0, -5],
-    [ 0,  0,  0,  5,  5,  0,  0,  0]
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [5, 10, 10, 10, 10, 10, 10, 5],
+    [-5, 0, 0, 0, 0, 0, 0, -5],
+    [-5, 0, 0, 0, 0, 0, 0, -5],
+    [-5, 0, 0, 0, 0, 0, 0, -5],
+    [-5, 0, 0, 0, 0, 0, 0, -5],
+    [-5, 0, 0, 0, 0, 0, 0, -5],
+    [0, 0, 0, 5, 5, 0, 0, 0]
   ],
   'q': [
     [-20, -10, -10, -5, -5, -10, -10, -20],
-    [-10,   0,   0,  0,  0,   0,   0, -10],
-    [-10,   0,   5,  5,  5,   5,   0, -10],
-    [ -5,   0,   5,  5,  5,   5,   0,  -5],
-    [  0,   0,   5,  5,  5,   5,   0,  -5],
-    [-10,   5,   5,  5,  5,   5,   0, -10],
-    [-10,   0,   5,  0,  0,   0,   0, -10],
+    [-10, 0, 0, 0, 0, 0, 0, -10],
+    [-10, 0, 5, 5, 5, 5, 0, -10],
+    [-5, 0, 5, 5, 5, 5, 0, -5],
+    [0, 0, 5, 5, 5, 5, 0, -5],
+    [-10, 5, 5, 5, 5, 5, 0, -10],
+    [-10, 0, 5, 0, 0, 0, 0, -10],
     [-20, -10, -10, -5, -5, -10, -10, -20]
   ],
   'k': [
@@ -92,19 +98,19 @@ var pst_w = {
     [-30, -40, -40, -50, -50, -40, -40, -30],
     [-20, -30, -30, -40, -40, -30, -30, -20],
     [-10, -20, -20, -20, -20, -20, -20, -10],
-    [ 20,  20,   0,   0,   0,   0,  20,  20],
-    [ 20,  30,  10,   0,   0,  10,  30,  20]
+    [20, 20, 0, 0, 0, 0, 20, 20],
+    [20, 30, 10, 0, 0, 10, 30, 20]
   ],
 
   // Endgame King Table
   'k_e': [
     [-50, -40, -30, -20, -20, -30, -40, -50],
-    [-30, -20, -10,   0,   0, -10, -20, -30],
-    [-30, -10,  20,  30,  30,  20, -10, -30],
-    [-30, -10,  30,  40,  40,  30, -10, -30],
-    [-30, -10,  30,  40,  40,  30, -10, -30],
-    [-30, -10,  20,  30,  30,  20, -10, -30],
-    [-30, -30,   0,   0,   0,   0, -30, -30],
+    [-30, -20, -10, 0, 0, -10, -20, -30],
+    [-30, -10, 20, 30, 30, 20, -10, -30],
+    [-30, -10, 30, 40, 40, 30, -10, -30],
+    [-30, -10, 30, 40, 40, 30, -10, -30],
+    [-30, -10, 20, 30, 30, 20, -10, -30],
+    [-30, -30, 0, 0, 0, 0, -30, -30],
     [-50, -30, -30, -30, -30, -30, -30, -50]
   ]
 };
@@ -353,6 +359,11 @@ function makeBestMove(color) {
   game.move(move);
   board.position(game.fen());
 
+  window.setTimeout(function () {
+  if ('captured' in move) { captureSound.play(); }
+  else { moveSound.play(); }
+  }, 250)
+
   if (color === 'b') {
 
     // Highlight black move
@@ -454,8 +465,6 @@ $('#redoBtn').on('click', function () {
   }
 });
 
-$('#flipOrientationBtn').on('click', board.flip);
-
 $('#moveBtn').on('click', function () {
   window.setTimeout(function () {
     makeBestMove(game.turn());
@@ -466,19 +475,24 @@ $('#moveBtn').on('click', function () {
   }, 250)
 });
 
+$('#flipOrientationBtn').on('click', function () {
+  board.flip();
+});
+
+
 $(document).ready(function () {
 
   $("#fenbtn").click(function () {
-      var input = $("#fen").val();
-      board.position(input);
-      game.load(input);
-      $pgn.html(game.pgn());
-      $fen.html(game.fen());
-      globalSum = 0;
-      $board.find('.' + squareClass).removeClass('highlight-white')
-      $board.find('.' + squareClass).removeClass('highlight-black')
-      updateAdvantage();
-      updateStatus();
+    var input = $("#fen").val();
+    board.position(input);
+    game.load(input);
+    $pgn.html(game.pgn());
+    $fen.html(game.fen());
+    globalSum = 0;
+    $board.find('.' + squareClass).removeClass('highlight-white')
+    $board.find('.' + squareClass).removeClass('highlight-black')
+    updateAdvantage();
+    updateStatus();
   });
 
 });
@@ -501,6 +515,45 @@ function compVsComp(color) {
     }
     compVsComp(color);
   }, 250);
+}
+
+function colorbw() {
+  theme = document.getElementById("theme").value;
+
+  if (theme == 'blue') {
+    theme = 'wikipedia';
+    r.style.setProperty('--light', '#dee3e6');
+    r.style.setProperty('--dark', '#8ca2ad');
+    r.style.setProperty('--blight', '#312e2b');
+    r.style.setProperty('--bdark', '#ffffff');
+    r.style.setProperty('--move', 'inset 0 0 0px 2000px rgba(195,216,135,0.7)');
+  } else if (theme == 'chesscom') {
+    r.style.setProperty('--light', '#eeeed2');
+    r.style.setProperty('--dark', '#769656');
+    r.style.setProperty('--blight', '#312e2b');
+    r.style.setProperty('--bdark', '#ffffff');
+    r.style.setProperty('--move', 'inset 0 0 0px 2000px rgba(247,247,105,0.7)');
+  } else if (theme == 'symbol') {
+    r.style.setProperty('--light', '#ffffff');
+    r.style.setProperty('--dark', '#58ac8a');
+  } else if (theme == 'uscf') {
+    r.style.setProperty('--light', '#c3c6be');
+    r.style.setProperty('--dark', '#727fa2');
+  } else if (theme == 'wikipedia') {
+    r.style.setProperty('--light', '#f0d9b5');
+    r.style.setProperty('--dark', '#b58863');
+    r.style.setProperty('--move', 'inset 0 0 0px 2000px rgba(195,216,135,0.7)');
+  }
+
+  var config = {
+    draggable: true,
+    position: game.fen(),
+    onDragStart: onDragStart,
+    onDrop: onDrop,
+    onSnapEnd: onSnapEnd,
+    pieceTheme: ('img/chesspieces/' + theme + '/{piece}.png'),
+  };
+  board = Chessboard('myBoard', config);
 }
 
 //
@@ -532,11 +585,16 @@ function onDrop(source, target) {
   });
 
   // Illegal move
-  if (move === null) return 'snapback';
+  if (move === null) {
+    return 'snapback';
+  }
 
   globalSum = evaluateBoard(move, globalSum, 'w');
   updateAdvantage();
   updateStatus();
+
+  if ('captured' in move) { captureSound.play(); }
+  else { moveSound.play(); }
 
   // Highlight latest move
   $board.find('.' + squareClass).removeClass('highlight-white');
