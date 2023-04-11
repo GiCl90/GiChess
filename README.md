@@ -6,6 +6,7 @@ Play at <a href="https://gicl90.github.io/GiChess/">https://gicl90.github.io/GiC
 
 v1.4.0<br>
 - Recognizes a checmate<br>
+- Aesthetic Changes<br>
 
 v1.3.0<br>
 - Better King Endgame<br>
