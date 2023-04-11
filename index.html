@@ -34,7 +34,7 @@
           <p style="margin-top: 25%;">&nbsp;</p>
         </div>
         <h2>STATUS:</h2>
-        <label style="font-weight: bolder; color: red; font-size: large;" id="status">&nbsp;</label>
+        <label style="font-weight: bolder; font-size: large;" id="status">&nbsp;</label>
         <div class="mobileHide">
           <h2>PGN:</h2>
           <textarea class="pgn" readonly id="pgn"></textarea>
@@ -79,10 +79,10 @@
           <p style="margin-top: 25%;">&nbsp;</p>
         </div>
         <h2>STRENGTH:</h2>
-        <select id="search-depth" style="width: 50%; height: 50px; font-size: large; text-align: center;">
+        <select id="search-depth">
           <option value="1">Level 1</option>
           <option value="2">Level 2</option>
-          <option value="3">Level 3</option>
+          <option value="3" selected>Level 3</option>
           <option value="4">Level 4</option>
           <option value="5">Level 5</option>
         </select><br><br>
@@ -90,6 +90,14 @@
           <p style="font-size: large; font-weight: bolder;">DEPTH: <label id="depth"></label></p>
           <p><label id="position-count"></label> positions in <label id="time"></label> seconds</p>
           <p><label id="positions-per-s"></label> pos/s</p>
+          <h3>Select Theme</h3>
+          <select id="theme" onChange="colorbw()">
+            <option value="chesscom" selected>Chess.com</option>
+            <option value="blue">Lichess</option>
+            <option value="symbol">Symbol</option>
+            <option value="uscf">Uscf</option>
+            <option value="wikipedia">Wikipedia</option>
+          </select><br><br>
         </div>
       </div>
     </div>
