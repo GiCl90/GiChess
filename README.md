@@ -5,7 +5,7 @@ Play at <a href="https://gicl90.github.io/GiChess/">https://gicl90.github.io/GiC
 <h2>DONE</h2>
 
 v1.4.0<br>
-- Recognizes a checmate<br>
+- Recognizes a checkmate<br>
 - Aesthetic Changes<br>
 
 v1.3.0<br>
