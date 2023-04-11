@@ -142,6 +142,12 @@ function evaluateBoard(move, prevSum, color) {
     if (move.piece === 'k') { move.piece = 'k_e' }
   }
 
+  if (game.in_checkmate() && move.color === color) {
+    prevSum += 20000;
+  } else if (game.in_checkmate()) {
+    prevSum -= 20000;
+  }
+
   if ('captured' in move) {
     // Opponent piece was captured (good for us)
     if (move.color === color) {
@@ -362,7 +368,7 @@ function makeBestMove(color) {
   window.setTimeout(function () {
   if ('captured' in move) { captureSound.play(); }
   else { moveSound.play(); }
-  }, 250)
+  }, 100)
 
   if (color === 'b') {
 
