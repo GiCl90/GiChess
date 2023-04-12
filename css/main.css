@@ -9,6 +9,7 @@
 
 h1 {
   color: var(--bdark);
+  margin-top: 5%;
 }
 
 h2 {
@@ -19,7 +20,18 @@ h3 {
   color: var(--bdark);
 }
 
-select { 
+.depthselect { 
+  width: 50%;
+  height: 50px;
+  font-size: large;
+  text-align: center;
+  color: var(--bdark);
+  background-color: var(--blight);
+}
+
+.theme { 
+  margin-top: 5%;
+  float: right;
   width: 50%;
   height: 50px;
   font-size: large;
