@@ -142,10 +142,55 @@ function evaluateBoard(move, prevSum, color) {
     if (move.piece === 'k') { move.piece = 'k_e' }
   }
 
-  if (game.in_checkmate() && move.color === color) {
-    prevSum += 20000;
-  } else if (game.in_checkmate()) {
-    prevSum -= 20000;
+  if (game.in_checkmate()) {
+    // Opponent in checkmate
+    if (move.color === color) {
+      prevSum += 20000;
+    }
+    // Engine in checkmate
+    else {
+      prevSum -= 20000;
+    }
+  }
+
+  /*// Midgame checks
+  if ((nmoves < 30) && game.in_check()) {
+    if (move.color === color) {
+      prevSum += 10;
+    }
+    else {
+      prevSum -= 10;
+    }
+  }
+
+  // Endgame checks
+  if ((nmoves >= 30) && game.in_check()) {
+    if (move.color === color) {
+      prevSum += 20;
+    }
+    else {
+      prevSum -= 20;
+    }
+  }*/
+
+  // we are behind, draw is always good for us!
+  if (prevSum < -100 && game.in_draw()) {
+    if (move.color === color) {
+      prevSum += 10000
+    }
+    else {
+      prevSum += 10000
+    }
+  }
+
+  // we are up, draw is always bad for us!
+  if (prevSum > 100 && game.in_draw()) {
+    if (move.color === color) {
+      prevSum -= 10000
+    }
+    else {
+      prevSum -= 10000
+    }
   }
 
   if ('captured' in move) {
@@ -366,8 +411,8 @@ function makeBestMove(color) {
   board.position(game.fen());
 
   window.setTimeout(function () {
-  if ('captured' in move) { captureSound.play(); }
-  else { moveSound.play(); }
+    if ('captured' in move) { captureSound.play(); }
+    else { moveSound.play(); }
   }, 100)
 
   if (color === 'b') {
