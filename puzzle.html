@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PuzzleDash</title>
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/stylepuzzle.css">
+    <link rel="stylesheet" href="css/chessboard-1.0.0.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <img id="correct" src="img/tick.png"></img>
+    <img id="wrong" src="img/cross.png"></img>
+    <div id="startPage">
+        <div class="center textcenter" style="width: 100%;">
+            <select class="radio" id="theme">
+              <option value="chesscom" selected>Chess.com</option>
+              <option value="blue">Lichess</option>
+              <option value="symbol">Symbol</option>
+              <option value="uscf">Uscf</option>
+              <option value="wikipedia">Wikipedia</option>
+            </select>
+          </div>
+        <div class="head">
+            <p class="heading">PuzzleDash</p>
+        </div>
+
+        <div id="but" class="pressDownButton" onclick="start()">Start</div>
+    </div>
+    <div id="loadingPage">
+        <img class="loadingGif" src="img/loading.gif"/>
+        <p class="loadingText">Loading your puzzles, it may take a while sometimes.</p>
+    </div>
+    <div class="game" id="gameDiv">
+        <div id="solvedDiv">
+            <p id="score"></p>
+            <div id="solvedPuzzles"></div>
+            <p id="rating" style="font-size: 30px;"></p>
+        </div>
+
+        <div id="gameOver">
+            <p id="scoreText"></p>
+            <p id="scoreText2"></p>
+            <div class="pressDownButton" onclick="window.location.reload()">Play Again</div>
+        </div>
+
+        <div id="gameBoardDiv">
+            <div id="myBoard"></div>
+        </div>
+
+        <div id="moveColorDiv">
+            <p id="timer">Time</p>
+            <div id="colorSquare"></div>
+            <p id="moveColor"></p>
+        </div>
+    </div>
+    <script src="js/chess.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/chessboard-1.0.0.js"></script>
+    <script src="js/squares.js"></script>
+    <script src="js/puzzledash.js"></script>
+</body>
+</html>
