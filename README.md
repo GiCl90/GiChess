@@ -50,4 +50,5 @@ V0.1.0<br>
 - ....<br>
 
 <h2>CREDITS</h2>
-Zhang Zeyu - For <a href="https://dev.to/zeyu2001/build-a-simple-chess-ai-in-javascript-18eg">this tutorial</a>
+Zhang Zeyu - For <a href="https://dev.to/zeyu2001/build-a-simple-chess-ai-in-javascript-18eg">this tutorial</a><br>
+sggts04 - <a href="https://github.com/sggts04/PuzzleDash">PuzzleDash</a>
