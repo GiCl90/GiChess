@@ -39,23 +39,23 @@
         <p class="loadingText">Loading your puzzles, it may take a while sometimes.</p>
     </div>
     <div class="game" id="gameDiv">
-        <div id="solvedDiv">
+        <div id="solvedDiv" ontouchstart="enableScroll()">
             <p id="score"></p>
             <div id="solvedPuzzles"></div>
             <p id="rating" style="font-size: 30px;"></p>
         </div>
 
-        <div id="gameOver">
+        <div id="gameOver" ontouchstart="enableScroll()">
             <p id="scoreText"></p>
             <p id="scoreText2"></p>
             <div class="pressDownButton" onclick="window.location.reload()">Play Again</div>
         </div>
 
-        <div id="gameBoardDiv">
+        <div id="gameBoardDiv" ontouchstart="disableScroll()">
             <div id="myBoard"></div>
         </div>
 
-        <div id="moveColorDiv">
+        <div id="moveColorDiv" ontouchstart="enableScroll()">
             <p id="timer">Time</p>
             <div id="colorSquare"></div>
             <p id="moveColor"></p>
@@ -66,5 +66,6 @@
     <script src="js/chessboard-1.0.0.js"></script>
     <script src="js/squares.js"></script>
     <script src="js/puzzledash.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
