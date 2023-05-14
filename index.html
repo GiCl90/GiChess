@@ -18,12 +18,12 @@
   <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
   <script type="text/javascript" src="js/chess.js"></script>
   <script>
-    if ($(window).width() > 960) {
+    if (!/Android|iPhone/i.test(navigator.userAgent)) {
       document.write('<script type="text/javascript" src="js/chessboard-1.0.0.js"><\/script>');
     }
   </script>
   <script>
-    if ($(window).width() < 960) {
+    if (/Android|iPhone/i.test(navigator.userAgent)) {
       document.write('<script type="text/javascript" src="js/chessboardclick.js"><\/script>');
     }
   </script>
