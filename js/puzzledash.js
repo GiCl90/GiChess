@@ -22,7 +22,7 @@ function start() {
             startAudio.play();
             var a = 'hi';
             let userHistory = [];
-            let id = Math.floor(Math.random() * (1250 - 750 + 1)) + 750;
+            let id = Math.floor(Math.random() * (501 - 1 + 1)) + 1;
             var correct = 0;
             let wrong = 0;
             let puzzleStartDateTime = new Date();
