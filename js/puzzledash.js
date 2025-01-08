@@ -178,7 +178,7 @@ function loadPuzzle(puzzles, id, userHistory, correct, wrong, puzzleEndDateTime,
                     elem = `<a href="https://lichess.org/analysis/${lichessPuzzleFEN}" target="_blank"><img class="marks" src="img/cross.png"></img></a>`;
                 $('#solvedPuzzles').append(elem);
             }
-            loadPuzzle(puzzles, id - 250, userHistory, correct, wrong, puzzleEndDateTime, timerId);
+            loadPuzzle(puzzles, id - 5000, userHistory, correct, wrong, puzzleEndDateTime, timerId);
             return 'snapback';
         }
         if (move.captured) captureAudio.play()
@@ -211,7 +211,7 @@ function loadPuzzle(puzzles, id, userHistory, correct, wrong, puzzleEndDateTime,
                     elem = `<a href="https://lichess.org/analysis/${lichessPuzzleFEN}" target="_blank"><img class="marks" src="img/cross.png"></img></a>`;
                 $('#solvedPuzzles').append(elem);
             }
-            loadPuzzle(puzzles, id + 501, userHistory, correct, wrong, puzzleEndDateTime, timerId);
+            loadPuzzle(puzzles, id + 10001, userHistory, correct, wrong, puzzleEndDateTime, timerId);
             return;
         }
 
